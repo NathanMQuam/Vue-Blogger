@@ -1,6 +1,18 @@
 <template>
-  <div class="blog col-12">
-    {{ blog.title }}
+  <div class="blog" v-if="blog.creator">
+    <div class="col-2">
+      <router-link :to="{name: 'BlogPage', params: {id: blog.id}}">
+        <img class="img-fluid" :src="blog.creator.picture" alt="">
+      </router-link>
+    </div>
+    <div class="col text-left">
+      <router-link :to="{name: 'BlogPage', params: {id: blog.id}}">
+        <div class="w-100">
+          {{ blog.title }}
+          <p><small>{{ blog.creator.name }}</small></p>
+        </div>
+      </router-link>
+    </div>
   </div>
 </template>
 

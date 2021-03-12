@@ -5,9 +5,7 @@
       <span class="mx-2 text-white">Vue 3 Starter</span>
     </h1> -->
     <div class="container h-100">
-      <div class="row">
-        <Blog v-for="blogData in state.blogs" :key="blogData.id" :blog="blogData" />
-      </div>
+      <Blog class="row" v-for="blogData in state.blogs" :key="blogData.id" :blog="blogData" />
     </div>
   </div>
 </template>
