@@ -33,17 +33,19 @@ export default {
   setup () {
     const route = useRoute()
     const state = reactive({
-      blog: computed(() => AppState.activeBlog)
+      blog: computed(() => AppState.activeBlog),
+      comments: computed(() => AppState.comments)
     })
     onMounted(() => {
       console.log(route.params.id)
       blogsListService.getBlogById(route.params.id)
-      // blogsListService.getCommentsByBlogId(state.blog.id)
+      blogsListService.getCommentsByBlogId(route.params.id)
     })
     onBeforeRouteLeave((to, from, next) => {
       // if confirmed and any of the input fields have a value
       if (window.confirm('You sure bro?')) {
         AppState.activeBlog = {}
+        AppState.comments = {}
         next()
       }
     })
