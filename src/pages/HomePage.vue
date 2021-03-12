@@ -4,19 +4,35 @@
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Vue 3 Starter</span>
     </h1> -->
-    <div class="container-fluid h-100">
+    <div class="container h-100">
       <div class="row">
-        <div class="col">
-          <p>test</p>
-        </div>
+        <Blog v-for="blogData in state.blogs" :key="blogData.id" :blog="blogData" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState.js'
+import { blogsListService } from '../services/BlogsListService'
+import Blog from '../components/Blog'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup () {
+    console.log(computed(() => AppState.blogs))
+    const state = reactive({
+      blogs: computed(() => AppState.blogs)
+    })
+    blogsListService.getBlogs()
+    console.log(state.blogs)
+    return {
+      state
+    }
+  },
+  components: {
+    Blog
+  }
 }
 </script>
 
