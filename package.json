@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve --fix",
+    "build": "vue-cli-service build --fix",
+    "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "@bcwdev/auth0provider-client": "0.0.3",
@@ -23,14 +23,17 @@
     "@vue/cli-service": "~4.5.10",
     "@vue/compiler-sfc": "^3.0.5",
     "@vue/eslint-config-standard": "^6.0.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": "^7.4.1",
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.1.1",
-    "sass": "^1.32.4"
+    "prettier": "^2.2.1",
+    "sass": "^1.32.4",
+    "sass-loader": "^10.1.1"
   }
 }
