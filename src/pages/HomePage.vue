@@ -11,6 +11,7 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState.js'
 import { blogsListService } from '../services/BlogsListService'
@@ -38,9 +39,5 @@ export default {
 .home{
   text-align: center;
   user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
 }
 </style>

@@ -6,10 +6,10 @@ export const api = Axios.create({
   timeout: 8000
 })
 
-export const setBearer = function (bearer) {
+export const setBearer = (bearer) => {
   api.defaults.headers.authorization = bearer
 }
 
-export const resetBearer = function () {
+export const resetBearer = () => {
   api.defaults.headers.authorization = ''
 }

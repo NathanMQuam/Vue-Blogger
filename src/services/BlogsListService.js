@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AppState } from '../AppState.js'
 import { api } from './AxiosService.js'
 
@@ -17,6 +18,7 @@ class BlogsListService {
       AppState.activeBlog = {}
       const res = await api.get('api/blogs/' + id)
       AppState.activeBlog = res.data
+      console.log(AppState.activeBlog)
     } catch (error) {
       console.error(error)
     }
@@ -24,9 +26,9 @@ class BlogsListService {
 
   async getCommentsByBlogId (id) {
     try {
-      AppState.activeBlog = {}
+      AppState.comments = {}
       const res = await api.get(`api/blogs/${id}/comments`)
-      AppState.activeBlog = res.data
+      AppState.comments = res.data
     } catch (error) {
       console.error(error)
     }

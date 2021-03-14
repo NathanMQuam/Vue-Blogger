@@ -11,6 +11,26 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  async getBlogs () {
+    try {
+      AppState.blogs = {}
+      const res = await api.get('/account/blogs')
+      AppState.blogs = res.data
+    } catch (error) {
+      logger.error('AccountService.getBlogs() error', error)
+    }
+  }
+
+  async getComments () {
+    try {
+      AppState.comments = {}
+      const res = await api.get('/account/comments')
+      AppState.comments = res.data
+    } catch (error) {
+      logger.error('AccountService.getComments() error', error)
+    }
+  }
 }
 
 export const accountService = new AccountService()
