@@ -33,6 +33,16 @@ class BlogsListService {
       console.error(error)
     }
   }
+
+  async createBlogPost (rawBlog) {
+    try {
+      const res = await api.post('api/blogs', rawBlog)
+      this.getBlogs()
+      return res.data._id
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 
 export const blogsListService = new BlogsListService()
