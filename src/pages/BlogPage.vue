@@ -14,15 +14,23 @@
             {{ state.blog.body }}
           </p>
           <div v-if="state.user">
-            <div v-if="state.blog">
-              <!-- <div v-if="state.user.email == state.blog.creator.email"> -->
-              <div class="d-flex justify-content-between m-1 p-1">
-                <button @click="deleteBlog">
-                  delort
-                </button>
-                <button>edit</button>
+            <div v-if="state.blog.creator">
+              <div v-if="state.user.email == state.blog.creator.email">
+                <form @submit.prevent="editBlog">
+                  <div class="input-group">
+                    <input type="text" name="title" v-model="state.blog.title">
+                  </div>
+                  <div class="input-group">
+                    <textarea name="body" cols="50" rows="3" v-model="state.blog.body"></textarea>
+                  </div>
+                  <button @click="deleteBlog" class="mt-auto">
+                    delort
+                  </button>
+                  <button type="submit" class="mt-auto">
+                    edit
+                  </button>
+                </form>
               </div>
-              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -84,6 +92,9 @@ export default {
           blogsListService.deleteBlogPost()
           router.push('/')
         }
+      },
+      async editBlog () {
+        blogsListService.editBlogPost(state.blog)
       }
     }
   },

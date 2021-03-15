@@ -1,5 +1,6 @@
 <template>
   <div class="CreateComment" v-if="state.user">
+    <p>Comment:</p>
     <form v-if="state.user.isAuthenticated" class="text-left" @submit.prevent="createComment">
       <div class="form-group">
         <textarea name="commentBody" v-model="state.newComment.body" rows="3" cols="50" required>

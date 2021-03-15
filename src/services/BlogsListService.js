@@ -56,6 +56,11 @@ class BlogsListService {
     }
   }
 
+  async editBlogPost (rawBlog) {
+    const id = AppState.activeBlog.id
+    await api.put('api/blogs/' + id, rawBlog)
+  }
+
   async deleteComment (commentId) {
     try {
       const id = AppState.activeBlog.id
