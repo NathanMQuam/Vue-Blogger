@@ -46,12 +46,33 @@ class BlogsListService {
 
   async createComment (rawComment) {
     try {
+      console.log(rawComment)
       const id = AppState.activeBlog.id
       const res = await api.post('api/comments', rawComment)
       this.getCommentsByBlogId(id)
       return res.data
     } catch (error) {
       console.error(error)
+    }
+  }
+
+  async deleteComment (commentId) {
+    try {
+      const id = AppState.activeBlog.id
+      await api.delete('api/comments/' + commentId)
+      this.getCommentsByBlogId(id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async deleteBlogPost () {
+    try {
+      const id = AppState.activeBlog.id
+      await api.delete('api/blogs/' + id)
+      this.getBlogById(id)
+    } catch (error) {
+
     }
   }
 }

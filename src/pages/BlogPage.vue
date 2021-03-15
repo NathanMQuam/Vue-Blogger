@@ -13,9 +13,17 @@
           <p>
             {{ state.blog.body }}
           </p>
-          <div class="d-flex justify-content-between m-1 p-1">
-            <button>delort</button>
-            <button>edit</button>
+          <div v-if="state.user">
+            <div v-if="state.blog">
+              <!-- <div v-if="state.user.email == state.blog.creator.email"> -->
+              <div class="d-flex justify-content-between m-1 p-1">
+                <button @click="deleteBlog">
+                  delort
+                </button>
+                <button>edit</button>
+              </div>
+              <!-- </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +44,7 @@
 <script>
 /* eslint-disable no-console */
 import { computed, onMounted, reactive } from 'vue'
-import { /* onBeforeRouteLeave, */ useRoute } from 'vue-router'
+import { /* onBeforeRouteLeave, */ useRoute, useRouter } from 'vue-router'
 import { blogsListService } from '../services/BlogsListService.js'
 import { AppState } from '../AppState.js'
 import Comment from '../components/Comment'
@@ -45,15 +53,18 @@ export default {
   name: 'BlogPage',
   setup () {
     const route = useRoute()
+    const router = useRouter()
     const state = reactive({
       blog: computed(() => AppState.activeBlog),
-      comments: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments),
+      user: computed(() => AppState.user)
     })
     onMounted(() => {
-      console.log(route.params.id)
-      console.log(state.blog)
+      // console.log(route.params.id)
       blogsListService.getBlogById(route.params.id)
       blogsListService.getCommentsByBlogId(route.params.id)
+      console.log('Blog:', state.blog)
+      console.log('User:', state.user)
     })
     // onBeforeRouteLeave((to, from, next) => {
     //   // if confirmed and if any of the input fields have a value
@@ -66,7 +77,14 @@ export default {
 
     return {
       route,
-      state
+      state,
+      async deleteBlog () {
+        console.log('attempted to delort blog')
+        if (window.confirm('Are you sure you want to delete this blog?')) {
+          blogsListService.deleteBlogPost()
+          router.push('/')
+        }
+      }
     }
   },
   components: {
