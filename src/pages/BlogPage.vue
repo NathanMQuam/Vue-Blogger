@@ -21,6 +21,11 @@
       </div>
       <div class="row">
         <div class="col-12">
+          <CreateComment />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <Comment v-for="commentData in state.comments" :key="commentData.id" :comment="commentData" />
         </div>
       </div>
@@ -35,6 +40,7 @@ import { /* onBeforeRouteLeave, */ useRoute } from 'vue-router'
 import { blogsListService } from '../services/BlogsListService.js'
 import { AppState } from '../AppState.js'
 import Comment from '../components/Comment'
+import CreateComment from '../components/CreateComment'
 export default {
   name: 'BlogPage',
   setup () {
@@ -64,7 +70,8 @@ export default {
     }
   },
   components: {
-    Comment
+    Comment,
+    CreateComment
   }
 }
 </script>

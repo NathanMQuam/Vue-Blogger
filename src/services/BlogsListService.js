@@ -43,6 +43,17 @@ class BlogsListService {
       console.error(error)
     }
   }
+
+  async createComment (rawComment) {
+    try {
+      const id = AppState.activeBlog.id
+      const res = await api.post('api/comments', rawComment)
+      this.getCommentsByBlogId(id)
+      return res.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 
 export const blogsListService = new BlogsListService()
