@@ -5,6 +5,7 @@
       <span class="mx-2 text-white">Vue 3 Starter</span>
     </h1> -->
     <div class="container h-100">
+      <CreateBlog class="row" />
       <Blog class="row" v-for="blogData in state.blogs" :key="blogData.id" :blog="blogData" />
     </div>
   </div>
@@ -16,6 +17,7 @@ import { computed, reactive } from 'vue'
 import { AppState } from '../AppState.js'
 import { blogsListService } from '../services/BlogsListService'
 import Blog from '../components/Blog'
+import CreateBlog from '../components/CreateBlog'
 export default {
   name: 'Home',
   setup () {
@@ -30,7 +32,8 @@ export default {
     }
   },
   components: {
-    Blog
+    Blog,
+    CreateBlog
   }
 }
 </script>
